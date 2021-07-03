@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../Sass/directory.styles.scss";
-import MenuItem from "../Menu/Menu";
+import MenuItem from "../Menu/MenuItem";
 
 class Directory extends Component {
   constructor() {
@@ -12,7 +12,7 @@ class Directory extends Component {
           title: "hats",
           imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
           id: 1,
-          linkUrl: "shop/hats",
+          linkUrl: "hats",
         },
         {
           title: "jackets",
@@ -43,7 +43,8 @@ class Directory extends Component {
         },
         {
           title: "mens",
-          imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+          imageUrl:
+            "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
           size: "large",
           id: 5,
           linkUrl: "shop/mens",
@@ -55,8 +56,9 @@ class Directory extends Component {
   render() {
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        {/* spreading all props */}
+        {this.state.sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))}
       </div>
     );
