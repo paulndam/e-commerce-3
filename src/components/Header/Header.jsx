@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { auth } from "../../Firebase/fireBaseUtils";
 import "../../Sass/header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import { auth } from "../../Firebase/fireBaseUtils";
 
 const Header = ({ currentUser }) => {
   return (
@@ -30,5 +31,11 @@ const Header = ({ currentUser }) => {
     </div>
   );
 };
+// connect allow us to get access of our currentuser in the reducer.
+//it is a high order function.
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
