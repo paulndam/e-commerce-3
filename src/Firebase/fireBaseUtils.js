@@ -14,6 +14,36 @@ const config = {
 
 firebase.initializeApp(config);
 
+// function that will take user UID from the user object and store it
+// in the data base.
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  // check if we are getting valid object or user.
+  if (!userAuth) return;
+
+  // if it exist. then query in the firestore to check if it exists.
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  // getting snapchot or reference.
+  const snapShot = userRef.get();
+  console.log("-----snap Shot ----", snapShot);
+
+  // if there's not a snapshot or document , then we create one
+  if (!snapShot.exists) {
+    // data we want to store or create.
+    const { displayName, email } = userAuth;
+    // to know when we created this data.
+    const createdAt = new Date();
+    try {
+      // .set() --> using it for the creation of data.
+      await userRef.set({ displayName, email, createdAt, ...additionalData });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  return userRef;
+};
+
 export const auth = firebase.auth();
 // export firestore.
 export const firestore = firebase.firestore();

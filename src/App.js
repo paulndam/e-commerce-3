@@ -7,7 +7,7 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import Header from "./components/Header/Header.jsx";
 import SignInAndSignUpPage from "./pages/SignInAndSignUpPage/SignInAndSignUpPage.jsx";
 
-import { auth } from "./Firebase/fireBaseUtils";
+import { auth, createUserProfileDocument } from "./Firebase/fireBaseUtils";
 
 class App extends Component {
   constructor() {
@@ -21,9 +21,37 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-      console.log(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      // this.setState({ currentUser: user });
+      //createUserProfileDocument(user);
+      //console.log(user);
+
+      // if we got a user.
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapShot) => {
+          console.log(snapShot.data());
+          this.setState(
+            {
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data(),
+              },
+            },
+            () => {
+              console.log("--- The State ----", this.state);
+            }
+          );
+          console.log(
+            "----check if states changes when user signs up---",
+            this.state
+          );
+        });
+      } else {
+        // if we dont got a user
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
