@@ -39,7 +39,7 @@ class Directory extends Component {
             "https://images.pexels.com/photos/35188/child-childrens-baby-children-s.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
           size: "large",
           id: 5,
-          linkUrl: "shop/mens",
+          linkUrl: "shop/kids",
         },
         {
           title: "mens",
