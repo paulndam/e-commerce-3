@@ -1,3 +1,5 @@
+import { userActionTypes } from "./userActionTypes";
+
 // a function that gets two props.
 // get a last state or the current state,then an action.
 // the action is obj that is a type that get a string value.
@@ -10,7 +12,7 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "SET_CURRENT_USER":
+    case userActionTypes.SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload,
