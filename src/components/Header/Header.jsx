@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { auth } from "../../Firebase/fireBaseUtils";
 import "../../Sass/header.styles.scss";
-import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { ReactComponent as Logo } from "../../assets/zendonki-1-logo.svg";
 import CartIcon from "../CartIcon/CartIcon";
 import CartDropDown from "../CartDropDown/CartDropDown";
 import { selectCartHidden } from "../../Redux/CartReducer/cartSelector";
