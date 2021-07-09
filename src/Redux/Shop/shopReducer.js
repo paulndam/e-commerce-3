@@ -1,4 +1,4 @@
-import ShopData from "./ShopData";
+import ShopData from "./ShopData.js";
 
 const INITIAL_STATE = {
   collections: ShopData,

@@ -5,7 +5,7 @@ const INITIAL_STATE = {
       imageUrl:
         "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/a190fb98-650a-4584-bb0b-d13a3b4603d4/featherlight-womens-running-cap-127RF5.png",
       id: 1,
-      linkUrl: "hats",
+      linkUrl: "shop/hats",
     },
     {
       title: "jackets",
